@@ -17,12 +17,11 @@ $(getPrice).on("click", function(){
     }).then(function(response){
         convRate = response.rate;
         console.log(convRate);
-        cryptoConvert();
     });
-
+    cryptoConvert(stockPrice, convRate);
 });
 
-function cryptoConvert() {
-    newPrice = stockPrice / convRate;
+function cryptoConvert(q, r) {
+    newPrice = q / r;
     console.log(newPrice);
 }
