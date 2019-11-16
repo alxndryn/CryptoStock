@@ -1,4 +1,5 @@
 var querySymbol = "AAPL";
+var getPrice = document.querySelector("");
 
 $(document).ready(function(){
     var AVurl = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" + querySymbol + "&apikey=8R49FW9VLKSNE9JK";
