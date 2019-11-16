@@ -9,12 +9,14 @@ $(getPrice).on("click", function(){
         method: "GET"
     }).then(function(response){
         stockPrice = response["Global Quote"]["05. price"];
+        console.log(stockPrice);
     });
     $.ajax({
         url: "https://rest.coinapi.io/v1/exchangerate/BTC/USD?apikey=DE8538D9-7264-4490-90FD-0ABB4E2B1908",
         method: "GET"
     }).then(function(response){
         convRate = response.rate;
+        console.log(convRate);
         cryptoConvert();
     });
 
