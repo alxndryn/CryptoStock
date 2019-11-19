@@ -1,6 +1,12 @@
 var querySymbol = "AAPL";
 var getPrice = document.querySelector(".red");
 
+function cryptoConvert(q, r) {
+    newPrice = q / r;
+    console.log(newPrice);
+    prependous("buttsCorp")
+}
+
 $(getPrice).on("click", function(){
     querySymbol = $(document.querySelector("#search")).val();
     var AVurl = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" + querySymbol + "&apikey=8R49FW9VLKSNE9JK";
@@ -10,6 +16,7 @@ $(getPrice).on("click", function(){
     }).then(function(response){
         stockPrice = response["Global Quote"]["05. price"];
         console.log(stockPrice);
+        cryptoConvert(stockPrice, convRate);
     });
     $.ajax({
         url: "https://rest.coinapi.io/v1/exchangerate/BTC/USD?apikey=DE8538D9-7264-4490-90FD-0ABB4E2B1908",
@@ -17,11 +24,20 @@ $(getPrice).on("click", function(){
     }).then(function(response){
         convRate = response.rate;
         console.log(convRate);
+        
     });
-    cryptoConvert(stockPrice, convRate);
+    
 });
 
-function cryptoConvert(q, r) {
-    newPrice = q / r;
-    console.log(newPrice);
+
+
+function prependous(name) {
+    var table = document.querySelector("tbody");
+    var newElement = $("<tr>");
+    let rowSymbol = $("<td>").text(querySymbol);
+    $(table).prepend(newElement);
+    $(newElement).append(name);
+    $(newElement).append(rowSymbol);
+    $(newElement).append(stockPrice);
+    $(newElement).append(newPrice);
 }
