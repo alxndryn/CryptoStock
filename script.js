@@ -187,7 +187,7 @@ $(searchBtn).on("click", function () {
 //Function that adds the values to the page from the search
 function prependous(name) {
     var newElement = $("<tr>");
-    let rowSymbol = $("<td>").text(querySymbol);
+    let rowSymbol = $("<td>").text(querySymbol.toUpperCase());
     $("tbody").prepend(newElement);
     $(newElement).append($("<td>").text(name));
     $(newElement).append(rowSymbol);
