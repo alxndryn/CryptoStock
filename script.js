@@ -15,10 +15,26 @@ var FacebookPrice = $("#FacebookDollarVal");
 var FacebookVolume = $("#FacebookVolume");
 var FacebookCrypto = $("#FacebookCryptoVal");
 
+//Due to the limit of API call that we are allowed to make per minute
+//We have created an array of API keys that are pulled from randomly
+//This allows us to be able to keep the site functioning
+//Arrays that hold the API Keys
+var alphaAPI = ["8R49FW9VLKSNE9JK", "D7BDX98JEX4CMDGY", "7YQ6SGFLSAWG2PNY", "R1HO6T0SA0NNCUFX"]
+var coinAPI = ["C0947395-C774-4C99-9908-9B82CB91E1F6", "9F1B5FB4-A270-44EA-97F3-969AB45E6F08", "3E618E22-0BFE-4AE3-96DD-CE807B909C95"]
+
+//Function for looping through the API keys
+function randomAlpha(alphaAPI){ 
+    return alphaAPI[Math.floor(Math.random() * alphaAPI.length)];
+};
+    
+function randomCoin(coinAPI){ 
+    return coinAPI[Math.floor(Math.random() * coinAPI.length)];
+};
+
 //Call for Amazon info
 function AmazonCall() {
     var querySymbol = "AMZN";
-    var AVurl = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" + querySymbol + "&apikey=8R49FW9VLKSNE9JK";
+    var AVurl = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" + querySymbol + `&apikey= ${randomAlpha(alphaAPI)}`;
     $.ajax({
         url: AVurl,
         method: "GET"
@@ -44,21 +60,10 @@ function AmazonCall() {
 
 AmazonCall();
 
-//Array that hold API Keys
-var alphaAPI = ["8R49FW9VLKSNE9JK", "D7BDX98JEX4CMDGY", "7YQ6SGFLSAWG2PNY", "R1HO6T0SA0NNCUFX"]
-var coinAPI = ["C0947395-C774-4C99-9908-9B82CB91E1F6", "9F1B5FB4-A270-44EA-97F3-969AB45E6F08", "3E618E22-0BFE-4AE3-96DD-CE807B909C95"]
 
-//Function for looping through the API keys
-function randomAlpha(alphaAPI){ 
-    return alphaAPI[Math.floor(Math.random() * alphaAPI.length)];
-};
-    
-function randomCoin(coinAPI){ 
-    return coinAPI[Math.floor(Math.random() * coinAPI.length)];
-};
 
 //Variable that grabs the search button
-var searchBtn = $("#searchbtn");
+var searchBtn = $("#searchBtn");
 //Function that handles the onclick search button
 $(searchBtn).on("click", function () {
     querySymbol = $(document.querySelector("#search")).val();
