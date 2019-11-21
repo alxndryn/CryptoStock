@@ -58,7 +58,7 @@ function randomCoin(coinAPI){
 };
 
 //Variable that grabs the search button
-var searchBtn = $(".red");
+var searchBtn = $("#searchbtn");
 //Function that handles the onclick search button
 $(searchBtn).on("click", function () {
     querySymbol = $(document.querySelector("#search")).val();
@@ -74,6 +74,7 @@ $(searchBtn).on("click", function () {
                 url: "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" + querySymbol + `&apikey= ${randomAlpha(alphaAPI)}`,
                 method: "GET"
             }).then(function (response) {
+                console.log(response);
                 stockPrice = response["Global Quote"]["05. price"];
                 searchVol = response["Global Quote"]["06. volume"];
                 $.ajax({
@@ -90,11 +91,12 @@ $(searchBtn).on("click", function () {
             butt = 2;
             compName = response.bestMatches["0"]["2. name"];
             stuff = response.bestMatches["0"]["1. symbol"];
-            var AVurl = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" + stuff + `&apikey= ${randomAlpha(alphaAPI)};
+            var AVurl = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" + stuff + `&apikey= ${randomAlpha(alphaAPI)}`;
             $.ajax({
                 url: AVurl,
                 method: "GET"
             }).then(function (response) {
+                console.log(response);
                 stockPrice = response["Global Quote"]["05. price"];
                 searchVol = response["Global Quote"]["06. volume"];
                 $.ajax({
