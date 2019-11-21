@@ -173,6 +173,7 @@ $(searchBtn).on("click", function () {
             method: "GET"
         }).then(function (response) {
             compName = response.bestMatches["0"]["2. name"];
+            console.log(response);
             $.ajax({
                 url: "https://rest.coinapi.io/v1/exchangerate/BTC/USD?apikey=9F1B5FB4-A270-44EA-97F3-969AB45E6F08",
                 method: "GET"
@@ -203,3 +204,12 @@ function cryptoConvert(q, r) {
     prependous(compName);
 }
  
+// upgrade search bar: if/else to search for either name or symbol
+// if (response.bestMatches["0"]["1. symbol"] === searchbarcontents) {
+//      works as-is
+// }
+// else {
+//      things = response.bestMatches["0"]["2. name"]
+//      stuff = response.bestMatches["0"]["1. symbol"]
+//      call val of symbol as normal
+//      crypto val as normal
