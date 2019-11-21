@@ -132,10 +132,10 @@ function prependous(name) {
     // as found by the initial lookup.
 
     if (butt === 1) {
-        $(newElement).append(querySymbol);
+        $(newElement).append($("<td>").text(querySymbol));
     }
     else {
-        $(newElement).append(stuff);
+        $(newElement).append($("<td>").text(stuff));
     }
     $(newElement).append($("<td>").text("$" + stockPrice));
     $(newElement).append($("<td>").text(searchVol + " " + "Shares Today"));
