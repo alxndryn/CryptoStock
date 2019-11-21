@@ -1,0 +1,12 @@
+#title {
+    font-size: 60px;
+}
+
+.infopanel {
+    width: 70%;
+    margin-right: 1%;
+    height: 20px;
+}
+.container {
+    background-color: goldenrod;
+}
