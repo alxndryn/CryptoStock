@@ -72,6 +72,11 @@ $(searchBtn).on("click", function () {
         url: AVurl,
         method: "GET"
     }).then(function (response) {
+
+        // if the user searches for a ticker symbol, then the site will search for values.
+        // else, the site will take the input, convert it into a symbol, and THEN search.
+
+
         if (response.bestMatches["0"]["1. symbol"] === querySymbol) {
             butt = 1;
             compName = response.bestMatches["0"]["2. name"];
@@ -121,6 +126,11 @@ function prependous(name) {
     var newElement = $("<tr>");
     $("tbody").prepend(newElement);
     $(newElement).append($("<td>").text(name));
+
+    // if the user input a ticker symbol, the function will append that to the table.
+    // else, if the user input a name, the function will append that company's symbol
+    // as found by the initial lookup.
+
     if (butt === 1) {
         $(newElement).append(querySymbol);
     }
