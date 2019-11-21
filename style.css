@@ -7,6 +7,14 @@
     margin-right: 1%;
     height: 20px;
 }
-.container {
-    background-color: goldenrod;
+
+.searchBtn{
+    width: 200px;
+    margin: 0 auto;
 }
+
+.header{
+    width: 80%;
+    padding: 10px;
+}
+
