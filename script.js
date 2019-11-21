@@ -15,62 +15,6 @@ var FacebookPrice = $("#FacebookDollarVal");
 var FacebookVolume = $("#FacebookVolume");
 var FacebookCrypto = $("#FacebookCryptoVal");
 
-//Call for Apple stock display
-function AppleCall() {
-var querySymbol = "AAPL";
-var AVurl = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" + querySymbol + "&apikey=8R49FW9VLKSNE9JK";
-$.ajax({
-    url: AVurl,
-    method: "GET"
-})
-.then(function(response){
-    var stockPrice = response["Global Quote"]["05. price"];
-    var stockVolume = response["Global Quote"]["06. volume"];
-    ApplePrice.text("$" + stockPrice);
-    AppleVolume.text(stockVolume + " " + "Shares Today");
-
-$.ajax({
-        url: "https://rest.coinapi.io/v1/exchangerate/BTC/USD?apikey=9F1B5FB4-A270-44EA-97F3-969AB45E6F08",
-        method: "GET"
-})
-.then(function(response){
-    var convRate = response.rate;
-    var newPrice = stockPrice / convRate;
-    AppleCrypto.text("₿" + newPrice);
-
-    });
-})}
-    
-AppleCall();
-
-//Call for Microsoft info
-function MicrosoftCall() {
-    var querySymbol = "MSFT";
-    var AVurl = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" + querySymbol + "&apikey=8R49FW9VLKSNE9JK";
-    $.ajax({
-        url: AVurl,
-        method: "GET"
-    })
-    .then(function(response){
-        var stockPrice = response["Global Quote"]["05. price"];
-        var stockVolume = response["Global Quote"]["06. volume"];
-        MicrosoftPrice.text("$" + stockPrice);
-        MicrosoftVolume.text(stockVolume + " " + "Shares Today");
-    
-    $.ajax({
-            url: "https://rest.coinapi.io/v1/exchangerate/BTC/USD?apikey=9F1B5FB4-A270-44EA-97F3-969AB45E6F08",
-            method: "GET"
-    })
-    .then(function(response){
-        var convRate = response.rate;
-        var newPrice = stockPrice / convRate;
-        MicrosoftCrypto.text("₿" + newPrice);
-
-        });
-    })}
-        
-    MicrosoftCall();
-
 //Call for Amazon info
 function AmazonCall() {
     var querySymbol = "AMZN";
@@ -99,68 +43,25 @@ function AmazonCall() {
         
     AmazonCall();
 
-//Call for Google info
-function GoogleCall() {
-var querySymbol = "GOOGL";
-var AVurl = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" + querySymbol + "&apikey=8R49FW9VLKSNE9JK";
-$.ajax({
-    url: AVurl,
-    method: "GET"
-})
-.then(function(response){
-    var stockPrice = response["Global Quote"]["05. price"];
-    var stockVolume = response["Global Quote"]["06. volume"];
-    GooglePrice.text("$" + stockPrice);
-    GoogleVolume.text(stockVolume + " " + "Shares Today");
+//Array that hold API Keys
+var alphaAPI = ["8R49FW9VLKSNE9JK", "D7BDX98JEX4CMDGY", "7YQ6SGFLSAWG2PNY", "R1HO6T0SA0NNCUFX"]
+var coinAPI = ["C0947395-C774-4C99-9908-9B82CB91E1F6", "9F1B5FB4-A270-44EA-97F3-969AB45E6F08", "3E618E22-0BFE-4AE3-96DD-CE807B909C95"]
 
-$.ajax({
-        url: "https://rest.coinapi.io/v1/exchangerate/BTC/USD?apikey=9F1B5FB4-A270-44EA-97F3-969AB45E6F08",
-        method: "GET"
-})
-.then(function(response){
-    var convRate = response.rate;
-    var newPrice = stockPrice / convRate;
-    GoogleCrypto.text("₿" + newPrice);
-
-    });
-})}
+//Function for looping through the API keys
+function randomAlpha(alphaAPI){ 
+    return alphaAPI[Math.floor(Math.random() * alphaAPI.length)];
+};
     
-GoogleCall();
-
-//Call for Facebook info
-function FacebookCall() {
-    var querySymbol = "FB";
-    var AVurl = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" + querySymbol + "&apikey=8R49FW9VLKSNE9JK";
-    $.ajax({
-        url: AVurl,
-        method: "GET"
-    })
-    .then(function(response){
-        var stockPrice = response["Global Quote"]["05. price"];
-        var stockVolume = response["Global Quote"]["06. volume"];
-        FacebookPrice.text("$" + stockPrice);
-        FacebookVolume.text(stockVolume + " " + "Shares Today");
-    
-    $.ajax({
-            url: "https://rest.coinapi.io/v1/exchangerate/BTC/USD?apikey=9F1B5FB4-A270-44EA-97F3-969AB45E6F08",
-            method: "GET"
-    })
-    .then(function(response){
-        var convRate = response.rate;
-        var newPrice = stockPrice / convRate;
-        FacebookCrypto.text("₿" + newPrice);
-
-        });
-    })}
-        
-    FacebookCall();
+function randomCoin(coinAPI){ 
+    return coinAPI[Math.floor(Math.random() * coinAPI.length)];
+};
 
 //Variable that grabs the search button
 var searchBtn = $(".red");
 //Function that handles the onclick search button
 $(searchBtn).on("click", function () {
     querySymbol = $(document.querySelector("#search")).val();
-    var AVurl = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" + querySymbol + "&apikey=8R49FW9VLKSNE9JK";
+    var AVurl = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" + querySymbol + `&apikey= ${randomAlpha(alphaAPI)}`;
     $.ajax({
         url: AVurl,
         method: "GET"
@@ -169,13 +70,13 @@ $(searchBtn).on("click", function () {
         stockPrice = response["Global Quote"]["05. price"];
         searchVol = response["Global Quote"]["06. volume"];
         $.ajax({
-            url: "https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=" + querySymbol + "&apikey=8R49FW9VLKSNE9JK",
+            url: "https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=" + querySymbol + `&apikey= ${randomAlpha(alphaAPI)}`,
             method: "GET"
         }).then(function (response) {
             compName = response.bestMatches["0"]["2. name"];
             console.log(response);
             $.ajax({
-                url: "https://rest.coinapi.io/v1/exchangerate/BTC/USD?apikey=9F1B5FB4-A270-44EA-97F3-969AB45E6F08",
+                url: "https://rest.coinapi.io/v1/exchangerate/BTC/USD?" + `&apikey= ${randomCoin(coinAPI)}`,
                 method: "GET"
             }).then(function (response) {
                 convRate = response.rate;
@@ -194,7 +95,7 @@ function prependous(name) {
     $(newElement).append(rowSymbol);
     $(newElement).append($("<td>").text("$" + stockPrice));
     $(newElement).append($("<td>").text(searchVol + " " + "Shares Today"));
-    $(newElement).append($("<td>").text(newPrice));
+    $(newElement).append($("<td>").text("₿" + newPrice));
 }
 
 //Funciton that converts the current price of the stock to Bitcoin
