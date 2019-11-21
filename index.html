@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <style type ="stylesheet" src="reset.css"></style>
+    <style type ="stylesheet" src="reset.css"></style>   
     <link rel="stylesheet" href="style.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -13,19 +13,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <title>CryptoStock</title>
 </head>
-<body>
-    <div class="row green darken-4">
+<body class = "#546e7a blue-grey darken-1">
+    <div class="header row #009688 teal">
         <div class="col s12" style = "text-align: center; color:aliceblue">
             <h1>CryptoStock</h1>
             <h5>Revolutionizing the way that a function makes a conversion</h5>
-            <form class="searchBtn" style="color:aliceblue">
+            <form class="searchBtn">
                 <label for="search">Search for a Company:</label>
-                <input type="text" placeholder="Search..." name="search2" style="color:aliceblue" id="search">
-                <a class="waves-effect waves-light btn-small red darken-4">Search</a>
+                <input type="text" placeholder="Enter ticker symbol..." name="search2" style="color:aliceblue" id="search">
+                <a class="waves-effect waves-light btn-small #00e676 green accent-3">Search</a>
             </form>
         </div>
     </div>
-    <div class="container">
+    <div class="container #dce775 lime lighten-2">
         <div class="row">
             <div class="col s12">
                 <table>
@@ -40,50 +40,18 @@
                     </thead>
                 
                     <tbody>
-                        <tr>
-                        <td id="company">Apple</td>
-                        <td id="code">AAPL</td>
-                        <td id="AppleDollarVal">$</td>
-                        <td id="AppleVolume">$</td>
-                        <td id="AppleCryptoVal">₿</td>
-                        </tr>
-                        <tr>
-                        <td id="company">Microsoft</td>
-                        <td id="code">MSFT</td>
-                        <td id="MicrosoftDollarVal">$</td>
-                        <td id="MicrosoftVolume">$</td>
-                        <td id="MicrosoftCryptoVal">₿</td>
-                        </tr>
-                        <tr>
+                       <tr>
                         <td id="company">Amazon</td>
                         <td id="code">AMZN</td>
                         <td id="AmazonDollarVal">$</td>
                         <td id="AmazonVolume">$</td>
                         <td id="AmazonCryptoVal">₿</td>
                         </tr>
-                        <tr>
-                        <td id="company">Alphabet (Google)</td>
-                        <td id="code">GOOGL</td>
-                        <td id="GoogleDollarVal">$</td>
-                        <td id="GoogleVolume">$</td>
-                        <td id="GoogleCryptoVal">₿</td>
-                        </tr>
-                        <tr>
-                        <td id="company">Facebook</td>
-                        <td id="code">FB</td>
-                        <td id="FacebookDollarVal">$</td>
-                        <td id="FacebookVolume">$</td>
-                        <td id="FacebookCryptoVal">₿</td>
-                        </tr>                                                 
-                        
                     </tbody>
-                </table>
-        
+                </table>        
             </div>
-        </div>
-            
+        </div>            
     </div>
-
         
     <script type="text/javascript" src="script.js"></script>
 </body>
