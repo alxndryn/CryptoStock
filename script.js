@@ -23,25 +23,26 @@ function AmazonCall() {
         url: AVurl,
         method: "GET"
     })
-    .then(function(response){
-        var stockPrice = response["Global Quote"]["05. price"];
-        var stockVolume = response["Global Quote"]["06. volume"];
-        AmazonPrice.text("$" + stockPrice);
-        AmazonVolume.text(stockVolume + " " + "Shares Today");
-    
-    $.ajax({
-            url: "https://rest.coinapi.io/v1/exchangerate/BTC/USD?apikey=9F1B5FB4-A270-44EA-97F3-969AB45E6F08",
-            method: "GET"
-    })
-    .then(function(response){
-        var convRate = response.rate;
-        var newPrice = stockPrice / convRate;
-        AmazonCrypto.text("₿" + newPrice);
+        .then(function (response) {
+            var stockPrice = response["Global Quote"]["05. price"];
+            var stockVolume = response["Global Quote"]["06. volume"];
+            AmazonPrice.text("$" + stockPrice);
+            AmazonVolume.text(stockVolume + " " + "Shares Today");
 
-        });
-    })}
-        
-    AmazonCall();
+            $.ajax({
+                url: "https://rest.coinapi.io/v1/exchangerate/BTC/USD?apikey=9F1B5FB4-A270-44EA-97F3-969AB45E6F08",
+                method: "GET"
+            })
+                .then(function (response) {
+                    var convRate = response.rate;
+                    var newPrice = stockPrice / convRate;
+                    AmazonCrypto.text("₿" + newPrice);
+
+                });
+        })
+}
+
+AmazonCall();
 
 //Array that hold API Keys
 var alphaAPI = ["8R49FW9VLKSNE9JK", "D7BDX98JEX4CMDGY", "7YQ6SGFLSAWG2PNY", "R1HO6T0SA0NNCUFX"]
@@ -61,38 +62,64 @@ var searchBtn = $(".red");
 //Function that handles the onclick search button
 $(searchBtn).on("click", function () {
     querySymbol = $(document.querySelector("#search")).val();
-    var AVurl = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" + querySymbol + `&apikey= ${randomAlpha(alphaAPI)}`;
+    var AVurl = "https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=" + querySymbol + `&apikey= ${randomAlpha(alphaAPI)}`;
     $.ajax({
         url: AVurl,
         method: "GET"
     }).then(function (response) {
-        console.log(response);
-        stockPrice = response["Global Quote"]["05. price"];
-        searchVol = response["Global Quote"]["06. volume"];
-        $.ajax({
-            url: "https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=" + querySymbol + `&apikey= ${randomAlpha(alphaAPI)}`,
-            method: "GET"
-        }).then(function (response) {
+        if (response.bestMatches["0"]["1. symbol"] === querySymbol) {
+            butt = 1;
             compName = response.bestMatches["0"]["2. name"];
-            console.log(response);
             $.ajax({
-                url: "https://rest.coinapi.io/v1/exchangerate/BTC/USD?" + `&apikey= ${randomCoin(coinAPI)}`,
+                url: "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" + querySymbol + `&apikey= ${randomAlpha(alphaAPI)}`,
                 method: "GET"
             }).then(function (response) {
-                convRate = response.rate;
-                cryptoConvert(stockPrice, convRate)
+                stockPrice = response["Global Quote"]["05. price"];
+                searchVol = response["Global Quote"]["06. volume"];
+                $.ajax({
+                    url: "https://rest.coinapi.io/v1/exchangerate/BTC/USD?" + `&apikey= ${randomCoin(coinAPI)}`,
+                    method: "GET"
+                }).then(function (response) {
+                    convRate = response.rate;
+                    cryptoConvert(stockPrice, convRate)
+                });
             });
-        })
-    });
+
+        }
+        else {
+            butt = 2;
+            compName = response.bestMatches["0"]["2. name"];
+            stuff = response.bestMatches["0"]["1. symbol"];
+            var AVurl = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" + stuff + `&apikey= ${randomAlpha(alphaAPI)};
+            $.ajax({
+                url: AVurl,
+                method: "GET"
+            }).then(function (response) {
+                stockPrice = response["Global Quote"]["05. price"];
+                searchVol = response["Global Quote"]["06. volume"];
+                $.ajax({
+                    url: "https://rest.coinapi.io/v1/exchangerate/BTC/USD?" + `&apikey= ${randomCoin(coinAPI)}`,
+                    method: "GET"
+                }).then(function (response) {
+                    convRate = response.rate;
+                    cryptoConvert(stockPrice, convRate)
+                });
+            });
+        }
+            });
 });
 
 //Function that adds the values to the page from the search
 function prependous(name) {
     var newElement = $("<tr>");
-    let rowSymbol = $("<td>").text(querySymbol);
     $("tbody").prepend(newElement);
     $(newElement).append($("<td>").text(name));
-    $(newElement).append(rowSymbol);
+    if (butt === 1) {
+        $(newElement).append(querySymbol);
+    }
+    else {
+        $(newElement).append(stuff);
+    }
     $(newElement).append($("<td>").text("$" + stockPrice));
     $(newElement).append($("<td>").text(searchVol + " " + "Shares Today"));
     $(newElement).append($("<td>").text("₿" + newPrice));
