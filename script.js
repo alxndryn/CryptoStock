@@ -87,13 +87,14 @@ $(searchBtn).on("click", function () {
                 console.log(response);
                 stockPrice = response["Global Quote"]["05. price"];
                 searchVol = response["Global Quote"]["06. volume"];
-                $.ajax({
-                    url: "https://rest.coinapi.io/v1/exchangerate/BTC/USD?" + `&apikey= ${randomCoin(coinAPI)}`,
-                    method: "GET"
-                }).then(function (response) {
-                    convRate = response.rate;
+                convRate = 8200;
                     cryptoConvert(stockPrice, convRate)
-                });
+                // $.ajax({
+                //     url: "https://rest.coinapi.io/v1/exchangerate/BTC/USD?" + `&apikey= ${randomCoin(coinAPI)}`,
+                //     method: "GET"
+                // }).then(function (response) {
+                    
+                // });
             });
 
         }
@@ -109,13 +110,14 @@ $(searchBtn).on("click", function () {
                 console.log(response);
                 stockPrice = response["Global Quote"]["05. price"];
                 searchVol = response["Global Quote"]["06. volume"];
-                $.ajax({
-                    url: "https://rest.coinapi.io/v1/exchangerate/BTC/USD?" + `&apikey= ${randomCoin(coinAPI)}`,
-                    method: "GET"
-                }).then(function (response) {
-                    convRate = response.rate;
+                convRate = 8200;
                     cryptoConvert(stockPrice, convRate)
-                });
+                // $.ajax({
+                //     url: "https://rest.coinapi.io/v1/exchangerate/BTC/USD?" + `&apikey= ${randomCoin(coinAPI)}`,
+                //     method: "GET"
+                // }).then(function (response) {
+                    
+                // });
             });
         }
             });
