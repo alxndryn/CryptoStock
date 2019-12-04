@@ -190,7 +190,7 @@ $(searchBtn).on("click", function () {
 
 
         if (response.bestMatches["0"]["1. symbol"] === querySymbol) {
-            butt = 1;
+            value = 1;
             compName = response.bestMatches["0"]["2. name"];
             $.ajax({
                 url: "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" + querySymbol + `&apikey= ${randomAlpha(alphaAPI)}`,
@@ -210,7 +210,7 @@ $(searchBtn).on("click", function () {
 
         }
         else {
-            butt = 2;
+            value = 2;
             compName = response.bestMatches["0"]["2. name"];
             stuff = response.bestMatches["0"]["1. symbol"];
             var AVurl = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" + stuff + `&apikey= ${randomAlpha(alphaAPI)}`;
