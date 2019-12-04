@@ -11,9 +11,6 @@ var AmazonCrypto = $("#AmazonCryptoVal");
 var GooglePrice = $("#GoogleDollarVal");
 var GoogleVolume = $("#GoogleVolume");
 var GoogleCrypto = $("#GoogleCryptoVal");
-var FacebookPrice = $("#FacebookDollarVal");
-var FacebookVolume = $("#FacebookVolume");
-var FacebookCrypto = $("#FacebookCryptoVal");
 
 //Due to the limit of API call that we are allowed to make per minute
 //We have created an array of API keys that are pulled from randomly
@@ -143,35 +140,6 @@ function GoogleCall() {
 
 GoogleCall();
 
-//Call for Facebook info
-function FacebookCall() {
-    var querySymbol = "FB";
-    var AVurl = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" + querySymbol + `&apikey= ${randomAlpha(alphaAPI)}`;
-    $.ajax({
-        url: AVurl,
-        method: "GET"
-    })
-        .then(function (response) {
-            var stockPrice = response["Global Quote"]["05. price"];
-            var stockVolume = response["Global Quote"]["06. volume"];
-            FacebookPrice.text("$" + stockPrice);
-            FacebookVolume.text(stockVolume + " " + "Shares Today");
-
-            $.ajax({
-                url: "https://rest.coinapi.io/v1/exchangerate/BTC/USD?" + "&apikey=" + coinAPI,
-                method: "GET"
-            })
-                .then(function (response) {
-                    var convRate = response.rate;
-                    var newPrice = stockPrice / convRate;
-                    FacebookCrypto.text("₿" + newPrice);
-
-                });
-        })
-}
-
-FacebookCall();
-
 
 
 //Variable that grabs the search button
@@ -243,7 +211,7 @@ function prependous(name) {
     // else, if the user input a name, the function will append that company's symbol
     // as found by the initial lookup.
 
-    if (butt === 1) {
+    if (value === 1) {
         $(newElement).append($("<td>").text(querySymbol));
     }
     else {
