@@ -20,15 +20,11 @@ var FacebookCrypto = $("#FacebookCryptoVal");
 //This allows us to be able to keep the site functioning
 //Arrays that hold the API Keys
 var alphaAPI = ["8R49FW9VLKSNE9JK", "D7BDX98JEX4CMDGY", "7YQ6SGFLSAWG2PNY", "R1HO6T0SA0NNCUFX"]
-var coinAPI = ["C0947395-C774-4C99-9908-9B82CB91E1F6", "9F1B5FB4-A270-44EA-97F3-969AB45E6F08", "3E618E22-0BFE-4AE3-96DD-CE807B909C95, DE8538D9-7264-4490-90FD-0ABB4E2B1908"]
+var coinAPI = "07F65B44-D679-49BE-A904-29C91146DDE0";
 
 //Function for looping through the API keys
 function randomAlpha(alphaAPI){ 
     return alphaAPI[Math.floor(Math.random() * alphaAPI.length)];
-};
-    
-function randomCoin(coinAPI){ 
-    return coinAPI[Math.floor(Math.random() * coinAPI.length)];
 };
 
 //Call for Amazon info
@@ -46,7 +42,7 @@ function AmazonCall() {
             AmazonVolume.text(stockVolume + " " + "Shares Today");
 
             $.ajax({
-                url: "https://rest.coinapi.io/v1/exchangerate/BTC/USD?apikey=9F1B5FB4-A270-44EA-97F3-969AB45E6F08",
+                url: "https://rest.coinapi.io/v1/exchangerate/BTC/USD?" + "&apikey=" + coinAPI,
                 method: "GET"
             })
                 .then(function (response) {
@@ -59,6 +55,122 @@ function AmazonCall() {
 }
 
 AmazonCall();
+
+//Call for Apple info
+function AppleCall() {
+    var querySymbol = "AAPL";
+    var AVurl = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" + querySymbol + `&apikey= ${randomAlpha(alphaAPI)}`;
+    $.ajax({
+        url: AVurl,
+        method: "GET"
+    })
+        .then(function (response) {
+            var stockPrice = response["Global Quote"]["05. price"];
+            var stockVolume = response["Global Quote"]["06. volume"];
+            ApplePrice.text("$" + stockPrice);
+            AppleVolume.text(stockVolume + " " + "Shares Today");
+
+            $.ajax({
+                url: "https://rest.coinapi.io/v1/exchangerate/BTC/USD?" + "&apikey=" + coinAPI,
+                method: "GET"
+            })
+                .then(function (response) {
+                    var convRate = response.rate;
+                    var newPrice = stockPrice / convRate;
+                    AppleCrypto.text("₿" + newPrice);
+
+                });
+        })
+}
+
+AppleCall();
+
+//Call for Microsoft info
+function MicrosoftCall() {
+    var querySymbol = "MSFT";
+    var AVurl = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" + querySymbol + `&apikey= ${randomAlpha(alphaAPI)}`;
+    $.ajax({
+        url: AVurl,
+        method: "GET"
+    })
+        .then(function (response) {
+            var stockPrice = response["Global Quote"]["05. price"];
+            var stockVolume = response["Global Quote"]["06. volume"];
+            MicrosoftPrice.text("$" + stockPrice);
+            MicrosoftVolume.text(stockVolume + " " + "Shares Today");
+
+            $.ajax({
+                url: "https://rest.coinapi.io/v1/exchangerate/BTC/USD?" + "&apikey=" + coinAPI,
+                method: "GET"
+            })
+                .then(function (response) {
+                    var convRate = response.rate;
+                    var newPrice = stockPrice / convRate;
+                    MicrosoftCrypto.text("₿" + newPrice);
+
+                });
+        })
+}
+
+MicrosoftCall();
+
+//Call for Google info
+function GoogleCall() {
+    var querySymbol = "GOOGL";
+    var AVurl = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" + querySymbol + `&apikey= ${randomAlpha(alphaAPI)}`;
+    $.ajax({
+        url: AVurl,
+        method: "GET"
+    })
+        .then(function (response) {
+            var stockPrice = response["Global Quote"]["05. price"];
+            var stockVolume = response["Global Quote"]["06. volume"];
+            GooglePrice.text("$" + stockPrice);
+            GoogleVolume.text(stockVolume + " " + "Shares Today");
+
+            $.ajax({
+                url: "https://rest.coinapi.io/v1/exchangerate/BTC/USD?" + "&apikey=" + coinAPI,
+                method: "GET"
+            })
+                .then(function (response) {
+                    var convRate = response.rate;
+                    var newPrice = stockPrice / convRate;
+                    GoogleCrypto.text("₿" + newPrice);
+
+                });
+        })
+}
+
+GoogleCall();
+
+//Call for Facebook info
+function FacebookCall() {
+    var querySymbol = "FB";
+    var AVurl = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" + querySymbol + `&apikey= ${randomAlpha(alphaAPI)}`;
+    $.ajax({
+        url: AVurl,
+        method: "GET"
+    })
+        .then(function (response) {
+            var stockPrice = response["Global Quote"]["05. price"];
+            var stockVolume = response["Global Quote"]["06. volume"];
+            FacebookPrice.text("$" + stockPrice);
+            FacebookVolume.text(stockVolume + " " + "Shares Today");
+
+            $.ajax({
+                url: "https://rest.coinapi.io/v1/exchangerate/BTC/USD?" + "&apikey=" + coinAPI,
+                method: "GET"
+            })
+                .then(function (response) {
+                    var convRate = response.rate;
+                    var newPrice = stockPrice / convRate;
+                    FacebookCrypto.text("₿" + newPrice);
+
+                });
+        })
+}
+
+FacebookCall();
 
 
 
@@ -87,14 +199,13 @@ $(searchBtn).on("click", function () {
                 console.log(response);
                 stockPrice = response["Global Quote"]["05. price"];
                 searchVol = response["Global Quote"]["06. volume"];
-                convRate = 8200;
+                $.ajax({
+                    url: "https://rest.coinapi.io/v1/exchangerate/BTC/USD?" + "&apikey=" + coinAPI,
+                    method: "GET"
+                }).then(function (response) {
+                    convRate = response.rate;
                     cryptoConvert(stockPrice, convRate)
-                // $.ajax({
-                //     url: "https://rest.coinapi.io/v1/exchangerate/BTC/USD?" + `&apikey= ${randomCoin(coinAPI)}`,
-                //     method: "GET"
-                // }).then(function (response) {
-                    
-                // });
+                });
             });
 
         }
@@ -110,14 +221,13 @@ $(searchBtn).on("click", function () {
                 console.log(response);
                 stockPrice = response["Global Quote"]["05. price"];
                 searchVol = response["Global Quote"]["06. volume"];
-                convRate = 8200;
+                $.ajax({
+                    url: "https://rest.coinapi.io/v1/exchangerate/BTC/USD?" + "&apikey=" + coinAPI,
+                    method: "GET"
+                }).then(function (response) {
+                    convRate = response.rate;
                     cryptoConvert(stockPrice, convRate)
-                // $.ajax({
-                //     url: "https://rest.coinapi.io/v1/exchangerate/BTC/USD?" + `&apikey= ${randomCoin(coinAPI)}`,
-                //     method: "GET"
-                // }).then(function (response) {
-                    
-                // });
+                });
             });
         }
             });
@@ -144,10 +254,9 @@ function prependous(name) {
     $(newElement).append($("<td>").text("₿" + newPrice));
 }
 
-//Funciton that converts the current price of the stock to Bitcoin
+//Function that converts the current price of the stock to Bitcoin
 function cryptoConvert(q, r) {
     newPrice = q / r;
     console.log(newPrice);
     prependous(compName);
 }
- 
