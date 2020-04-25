@@ -12,16 +12,16 @@ Upon loading the application CryptoStock presents a table with five of the best-
 - Allow users the option to convert company shares into other cryptocurrencies in addition to Bitcoin (Litecoin, Ethereum, etc.)
 - User can search by company name in addition to company stock exchange symbol
 
-## Credits
+## Built With
 
-### Collaborators
+- [Materialize](https://materializecss.com/) - Responsive front-end framework
+- [JQuery](https://jquery.com/) - JavaScript library
+- [Alpha Vantage](https://www.alphavantage.co/) API
+- [CoinAPI.io](https://www.coinapi.io/) API
+
+## Collaborators
 
 - [Michael Farrell](https://github.com/MFarrell242)
 - [Ryan Scott](https://github.com/ryanscott906)
 - [Justin Abreu](https://github.com/JGABREU2145) 
 - [Alexander Hogle](https://github.com/alxndryn)
-
-### Third-party APIs
-
-- [Alpha Vantage](https://www.alphavantage.co/)
-- [CoinAPI.io](https://www.coinapi.io/)
