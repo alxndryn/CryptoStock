@@ -25,3 +25,8 @@ Upon loading the application CryptoStock presents a table with five of the best-
 - [Ryan Scott](https://github.com/ryanscott906)
 - [Justin Abreu](https://github.com/JGABREU2145) 
 - [Alexander Hogle](https://github.com/alxndryn)
+
+
+## Note
+
+This project was forked after its initial completion in order to avoid breaking the final product with additional commits. The forked version of this project prevents an issue with making too many API calls upon the initial startup of the site.    
