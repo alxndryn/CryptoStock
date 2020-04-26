@@ -1,78 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <style type ="stylesheet" src="reset.css"></style>   
-    <link rel="stylesheet" href="style.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <style type="stylesheet" src="reset.css"></style>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <title>CryptoStock</title>
-</head>
-<body class = "#546e7a blue-grey darken-1">
+  </head>
+  <body class="#546e7a blue-grey darken-1">
     <div class="header row #009688 teal">
-        <div class="col s12" style = "text-align: center; color:aliceblue">
-            <h1>CryptoStock</h1>
-            <h5>Investing With Cryptocurrency, Simplified</h5>
-            <form class="searchBtn">
-                <input type="text" placeholder="Search for a Company....." name="search2" style="background: #009688; color:aliceblue" id="search">
-                <a class="waves-effect waves-light btn-small #00e676 green accent-3" id="searchBtn">Search</a>
-            </form>
-        </div>
+      <div class="col s12" style="text-align: center; color: aliceblue;">
+        <h1>CryptoStock</h1>
+        <h5>Investing With Cryptocurrency, Simplified</h5>
+        <form class="searchBtn">
+          <input
+            type="text"
+            placeholder="Search for a Company....."
+            name="search2"
+            style="background: #009688; color: aliceblue;"
+            id="search"
+          />
+          <a
+            class="waves-effect waves-light btn-small #00e676 green accent-3"
+            id="searchBtn"
+            >Search</a
+          >
+        </form>
+      </div>
     </div>
     <div class="container #dce775 lime lighten-2">
-        <div class="row">
-            <div class="col s12">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Company</th>
-                            <th>Stock Symbol</th>
-                            <th>Price Per Share</th>
-                            <th>Volume</th>
-                            <th>Crypto Value</th>
-                        </tr>
-                    </thead>
-                
-                    <tbody>
-                        <tr>
-                            <td id="company">Apple</td>
-                            <td id="code">AAPL</td>
-                            <td id="AppleDollarVal">$</td>
-                            <td id="AppleVolume">$</td>
-                            <td id="AppleCryptoVal">₿</td>
-                            </tr>
-                            <tr>
-                            <td id="company">Microsoft</td>
-                            <td id="code">MSFT</td>
-                            <td id="MicrosoftDollarVal">$</td>
-                            <td id="MicrosoftVolume">$</td>
-                            <td id="MicrosoftCryptoVal">₿</td>
-                            </tr>
-                            <tr>
-                            <td id="company">Amazon</td>
-                            <td id="code">AMZN</td>
-                            <td id="AmazonDollarVal">$</td>
-                            <td id="AmazonVolume">$</td>
-                            <td id="AmazonCryptoVal">₿</td>
-                            </tr>
-                            <tr>
-                            <td id="company">Alphabet (Google)</td>
-                            <td id="code">GOOGL</td>
-                            <td id="GoogleDollarVal">$</td>
-                            <td id="GoogleVolume">$</td>
-                            <td id="GoogleCryptoVal">₿</td>
-                            </tr>
-                    </tbody>
-                </table>        
-            </div>
-        </div>            
+      <div class="row">
+        <div class="col s12">
+          <table>
+            <thead>
+              <tr>
+                <th>Company</th>
+                <th>Stock Symbol</th>
+                <th>Price Per Share</th>
+                <th>Volume</th>
+                <th>Crypto Value</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td id="company">Apple</td>
+                <td id="code">AAPL</td>
+                <td id="AppleDollarVal">$</td>
+                <td id="AppleVolume">$</td>
+                <td id="AppleCryptoVal">₿</td>
+              </tr>
+              <tr>
+                <td id="company">Microsoft</td>
+                <td id="code">MSFT</td>
+                <td id="MicrosoftDollarVal">$</td>
+                <td id="MicrosoftVolume">$</td>
+                <td id="MicrosoftCryptoVal">₿</td>
+              </tr>
+              <tr>
+                <td id="company">Amazon</td>
+                <td id="code">AMZN</td>
+                <td id="AmazonDollarVal">$</td>
+                <td id="AmazonVolume">$</td>
+                <td id="AmazonCryptoVal">₿</td>
+              </tr>
+              <tr>
+                <td id="company">Alphabet (Google)</td>
+                <td id="code">GOOGL</td>
+                <td id="GoogleDollarVal">$</td>
+                <td id="GoogleVolume">$</td>
+                <td id="GoogleCryptoVal">₿</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-        
+
     <script type="text/javascript" src="script.js"></script>
-</body>
+  </body>
 </html>

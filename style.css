@@ -1,20 +1,19 @@
 #title {
-    font-size: 60px;
+  font-size: 60px;
 }
 
 .infopanel {
-    width: 70%;
-    margin-right: 1%;
-    height: 20px;
+  width: 70%;
+  margin-right: 1%;
+  height: 20px;
 }
 
-.searchBtn{
-    width: 200px;
-    margin: 0 auto;
+.searchBtn {
+  width: 200px;
+  margin: 0 auto;
 }
 
-.header{
-    width: 80%;
-    padding: 10px;
+.header {
+  width: 80%;
+  padding: 10px;
 }
-
