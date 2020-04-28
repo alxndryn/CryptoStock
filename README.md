@@ -9,7 +9,7 @@ Upon loading the application CryptoStock presents a table with five of the best-
 ## Built With
 
 - [Materialize](https://materializecss.com/) - Responsive front-end framework
-- [JQuery](https://jquery.com/) - JavaScript library
+- [jQuery](https://jquery.com/) - JavaScript library
 - [Alpha Vantage](https://www.alphavantage.co/) API
 - [CoinAPI.io](https://www.coinapi.io/) API
 
