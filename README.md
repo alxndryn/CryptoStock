@@ -28,6 +28,10 @@ Upon loading the application CryptoStock presents a table with five of the best-
 - Allow users the option to convert company shares into other cryptocurrencies in addition to Bitcoin (Litecoin, Ethereum, etc.)
 - User can search by company name in addition to company stock exchange symbol
 
+## Screenshot
+
+![](cryptostock.png)
+
 ## Note
 
 This project was forked after its initial completion in order to avoid breaking the final product with additional commits. The forked version of this project prevents an issue with making too many API calls upon the initial startup of the site.    
